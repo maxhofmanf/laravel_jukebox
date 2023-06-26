@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
+@extends('layouts.master')
+@section('content')
     <form method="POST" action="{{ route('genre.store') }}">
         @csrf
         <label for="name">Geef een genre naam op</label>
-        <input name="genreName" type="text">
+        <input name="name" type="text" value="{{ old('name') }}">
+        @error('name')
+            <span style="font-weight: bold; color: red;">{{ $message }}</span>
+        @enderror
     </form>
-</body>
-
-</html>
+@endsection

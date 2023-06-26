@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+@section('content')
     <h1>dit is een totaal overzicht van alle genres</h1>
     <ul>
         @foreach ($genre as $genre)
-            <li>{{ $genre->name }}<a href="genre/destroy/{{ $genre->id }}">x</a></li>
+            <li>{{ $genre->name }} <a href="destroy/{{ $genre->id }}">x</a></li>
         @endforeach
     </ul>
-</body>
-
-</html>
+    <p><a href="create/">add a genre </a></p>
+@endsection
