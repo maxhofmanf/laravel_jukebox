@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Playlist;
 use Illuminate\Http\Request;
@@ -12,8 +13,9 @@ class PlaylistController extends Controller
      */
     public function index()
     {
+        
         $playlists = Playlist::all();
-    return view('playlist.index', ['playlists'=>$playlists]);
+        return view('playlist.index', ['playlists'=>$playlists]);
     }
 
     /**
@@ -22,6 +24,7 @@ class PlaylistController extends Controller
     public function create()
     {
         $playlists = Playlist::all();
+        
         return view('playlist.create', ['playlists'=>$playlists]);
     }
 
@@ -30,12 +33,21 @@ class PlaylistController extends Controller
      */
     public function store(Request $request)
     {
+        
+        // Playlist::create([
+            
+        //     "name" => $request["name"],
+        // ]);
+        $user = Auth::user();
+        $validatedData = $request -> validate([
+            'name'=> 'required',
+        ]);
+        $playlists = new Playlist($validatedData);
+
+        $playlists->user_id = $user->id;
+        $playlists->save();
         $request->validate([
             'name' => 'required',
-        ]);
-        Playlist::create([
-            
-            "name" => $request["name"],
         ]);
         return redirect('playlist/all');
     }
