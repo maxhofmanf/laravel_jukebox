@@ -4,6 +4,8 @@ use App\Http\Controllers\SongController;
 use App\Http\Controllers\PlaylistController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\IsPlaylistOwner;
+use App\Http\Middleware\IsLoggedIn;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,15 +41,23 @@ Route::get('/genre/create', [GenreController::class, 'create'])->name('genre.cre
 Route::post('/genre/store',[GenreController::class, 'store'])->name('genre.store');
 Route::get('/genre/destroy/{genre}', [GenreController::class, 'destroy'])->name('genre.destroy');
 
+Route::get('/playlist/all', [PlaylistController::class, 'index'])->name('playlist.index');
+
+Route::middleware(IsLoggedIn::class)->group(function(){
+Route::get('/playlist/create', [PlaylistController::class, 'create'])->name('playlist.create');
+Route::post('/playlist/store',[PlaylistController::class, 'store'])->name('playlist.store');
+
+
+});
+Route::middleware(IsPlaylistOwner::class)->group(function(){
+    Route::get('/playlist/destroy/{playlist}', [PlaylistController::class, 'destroy'])->name('playlist.destroy');
+});
 Route::get('/song/all', [SongController::class, 'index'])->name('song.index');
 Route::get('/song/create', [SongController::class, 'create'])->name('song.create');
 Route::post('/song/store',[SongController::class, 'store'])->name('song.store');
 Route::get('/song/destroy/{song}', [SongController::class, 'destroy'])->name('song.destroy');
 
 
-Route::get('/playlist/all', [PlaylistController::class, 'index'])->name('playlist.index');
-Route::get('/playlist/create', [PlaylistController::class, 'create'])->name('playlist.create');
-Route::post('/playlist/store',[PlaylistController::class, 'store'])->name('playlist.store');
-Route::get('/playlist/destroy/{playlist}', [PlaylistController::class, 'destroy'])->name('playlist.destroy');
+
 
 

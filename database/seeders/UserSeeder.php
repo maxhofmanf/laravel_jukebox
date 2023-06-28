@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'name' => "admin",
             'email' => '99068281@gmail.com',
             'email_verified_at' => now(),
-            'password' => 'laravel123', // password
+            'password' => '123', // password
             'remember_token' => Str::random(10),
         ]);
         User::factory()->count(3)->create();

@@ -12,9 +12,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{{ url('genre/all') }}">genre</a></li>
-            <li><a href="{{ url('song/all') }}">songs</a></li>
-            <li><a href="{{ url('playlist/all') }}">playlists</a></li>
+            <li><a href="{{ url('genre/all') }}">Genre</a></li>
+            <li><a href="{{ url('song/all') }}">Songs</a></li>
+            <li><a href="{{ url('playlist/all') }}">Playlists</a></li>
         </ul>
     </nav>
     <main>
