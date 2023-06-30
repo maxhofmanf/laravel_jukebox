@@ -14,8 +14,10 @@ class SongController extends Controller
     public function index()
     {
         // dd(Auth::user()?->name);
+        $genres = Genre::all();
         $songs = Song::all();
-        return view('song.index', ['songs'=>$songs]);
+        
+        return view('song.index', ['songs'=>$songs, 'genres'=>$genres]);
     }
     /**
      * Show the form for creating a new resource.
@@ -54,9 +56,11 @@ class SongController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Song $song)
+    public function show($id)
     {
-        //
+        $song = Song::findOrFail($id);
+        return view('song.show', ['song'=>$song]);
+        // $songs = Song::where('genre_id', 'selectedGenre');
     }
 
     /**

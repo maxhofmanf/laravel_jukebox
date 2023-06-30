@@ -10,20 +10,42 @@
 </head>
 
 <body>
-    <nav>
+    <nav id="nav">
         <ul>
             <li><a href="{{ url('genre/all') }}">Genre</a></li>
             <li><a href="{{ url('song/all') }}">Songs</a></li>
             <li><a href="{{ url('playlist/all') }}">Playlists</a></li>
+
+            @guest
+
+                <li> | <a href="{{ route('login') }}">Login</a></li>
+            @else
+                <li>
+                    | <a href="{{ route('dashboard') }}">Welcome, {{ Auth::user()->name }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                        @csrf
+
+                    </form>
+
+                </li>
+
+            @endguest
         </ul>
-    </nav>
-    <main>
 
-        {{-- content --}}
-        @yield('content')
 
-    </main>
-    <footer>&copy; max hofman - laravel 10</footer>
+        <main>
+
+            {{-- content --}}
+            @yield('content')
+
+        </main>
+        <footer>&copy; max hofman - laravel 10</footer>
 </body>
 
 </html>

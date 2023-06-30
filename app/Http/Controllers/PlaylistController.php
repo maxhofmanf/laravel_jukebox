@@ -56,7 +56,7 @@ class PlaylistController extends Controller
      * Display the specified resource.
      */
     public function show(Playlist $playlist)
-    {
+{
         //
     }
 

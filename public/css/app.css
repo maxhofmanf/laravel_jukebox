@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-nav,
-ul,
-li {
-    /* display: inline; */
+nav#nav ul {
+    /* display: ; */
+    list-style: none;
+    gap: 10px;
 }
