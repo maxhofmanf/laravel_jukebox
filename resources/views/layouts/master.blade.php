@@ -37,15 +37,15 @@
 
             @endguest
         </ul>
+    </nav>
 
+    <main>
 
-        <main>
+        {{-- content --}}
+        @yield('content')
 
-            {{-- content --}}
-            @yield('content')
-
-        </main>
-        <footer>&copy; max hofman - laravel 10</footer>
+    </main>
+    <footer>&copy; max hofman - laravel 10</footer>
 </body>
 
 </html>

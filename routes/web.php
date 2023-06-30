@@ -47,6 +47,7 @@ Route::middleware(IsLoggedIn::class)->group(function(){
 Route::get('/playlist/create', [PlaylistController::class, 'create'])->name('playlist.create');
 Route::post('/playlist/store',[PlaylistController::class, 'store'])->name('playlist.store');
 
+Route::get('playlist/{id}', [PlaylistController::class, 'show'])->name('playlist.show');
 
 });
 Route::middleware(IsPlaylistOwner::class)->group(function(){
