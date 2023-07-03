@@ -19,9 +19,10 @@
             @guest
 
                 <li> | <a href="{{ route('login') }}">Login</a></li>
-            @else
+                <li> <a href="{{ route('register') }}">Register</a>
+                @else
                 <li>
-                    | <a href="{{ route('dashboard') }}">Welcome, {{ Auth::user()->name }}</a>
+                    | <a href="{{ route('dashboard') }}">{{ Auth::user()->name }}</a>
                 </li>
                 <li>
                     <a href="{{ route('logout') }}"

@@ -18,12 +18,15 @@ class IsPlaylistOwner
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        $playlist = $request->route('playlist');
 
+        // $playlist = PlayList::find($request->playlist_id);
+        $playlistId = $request->input('playlist_id');
+        $playlist = Playlist::find($playlistId);
+        
         if($user->id == $playlist->user_id){
             return $next($request);
         } else{
-        return redirect(route('playlist.index'));
+        return redirect(route('playlist.addsong'));
         }
         
     }

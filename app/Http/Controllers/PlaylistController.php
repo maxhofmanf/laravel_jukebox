@@ -5,9 +5,19 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Playlist;
 use Illuminate\Http\Request;
-
+use App\Models\Song;
 class PlaylistController extends Controller
 {
+    public function add_song(Request $request)
+    {
+        $playlistId = $request->input('playlist_id');
+        $playlist = Playlist::findOrFail($request->input('playlist_id'));
+        $song = Song::findOrFail($request->input('song_id'));
+
+        $playlist->songs()->attach($song);
+
+        return redirect('playlist/all');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -51,14 +61,16 @@ class PlaylistController extends Controller
         ]);
         return redirect('playlist/all');
     }
-
+    
     /**
      * Display the specified resource.
      */
     public function show($id)
-{
+    {
+    $songs = Song::all();
+    $playlists = Playlist::all();
     $playlist = Playlist::findOrFail($id);
-    return view('playlist.show', ['playlist'=>$playlist]);
+    return view('playlist.show', ['playlist'=>$playlist, 'songs'=>$songs,'playlists'=>$playlists,'playlistId' => $id,]);
     }
 
     /**
@@ -66,7 +78,9 @@ class PlaylistController extends Controller
      */
     public function edit(Playlist $playlist)
     {
-        //
+        // $playlist = Playlist::find($request->input('playlist'));
+        // $song = $request->input('song');
+        // $playlis->songs()->attach($song);
     }
 
     /**
