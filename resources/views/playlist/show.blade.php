@@ -21,19 +21,7 @@
             </li>
         @endforeach
     </ul>
-    <form action="{{ route('playlist.addSong') }}" method="POST">
-        @csrf
+    <input type="hidden" name="playlist_id" value="{{ $playlistId }}">
 
-        <input type="hidden" name="playlist_id" value="{{ $playlistId }}">
-
-
-        <label for="song_id">Song:</label>
-        <select name="song_id" id="song_id">
-            @foreach ($songs as $song)
-                <option value="{{ $song->id }}">{{ $song->name }}</option>
-            @endforeach
-        </select>
-
-        <button type="submit">Add Song</button>
-    </form>
+    <p><a href="{{ route('playlist.edit', ['playlist' => $playlist->id]) }}">edit this playlist</a></p>
 @endsection

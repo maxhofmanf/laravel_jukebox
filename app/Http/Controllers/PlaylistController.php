@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\Song;
 class PlaylistController extends Controller
 {
-    public function add_song(Request $request)
+    public function add_song(Request $request, $playlistId)
     {
         $playlistId = $request->input('playlist_id');
+        
         $playlist = Playlist::findOrFail($request->input('playlist_id'));
         $song = Song::findOrFail($request->input('song_id'));
 
@@ -76,29 +77,36 @@ class PlaylistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Playlist $playlist)
+    public function edit($playlistId)
     {
-        // $playlist = Playlist::find($request->input('playlist'));
-        // $song = $request->input('song');
-        // $playlis->songs()->attach($song);
+        $songs= Song::all();
+        $playlist = Playlist::findOrFail($playlistId);
+
+        Playlist::findOrFail($playlistId);
+        return view('playlist.edit', ['playlist'=>$playlist,'playlistId' => $playlistId, 'songs' => $songs]);
+
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Playlist $playlist)
+    public function update(Request $request, $playlistId)
     {
-        //
+        $playlist = Playlist::findOrFail($playlistId); // Retrieve the playlist by ID
+        $playlist->name = $request->input('name');
+        $playlist->save();
+        return redirect()->route('playlist.edit', $playlist->id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Playlist $playlist)
+    public function destroy(Playlist $playlist, $playlistId)
     {
         
-    
-        Playlist::destroy($playlist->id);
+
+        Playlist::destroy($playlplaylistId);
         return redirect(route('playlist.index'));
     
     }

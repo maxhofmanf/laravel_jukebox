@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
     @push('title')
-        - details
+        Song - details
     @endpush
+    <h2>{{ $song->name }}</h2>
 @endsection

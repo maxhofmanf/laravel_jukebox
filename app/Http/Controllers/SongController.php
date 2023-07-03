@@ -13,7 +13,7 @@ class SongController extends Controller
      */
     public function index()
     {
-        // dd(Auth::user()?->name);
+
         $genres = Genre::all();
         $songs = Song::all();
         
