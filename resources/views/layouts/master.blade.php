@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    {{-- nav --}}
     <nav id="nav">
         <ul class="horizontal-menu">
             <li><a href="{{ url('genre/all') }}">Genre</a></li>

@@ -8,17 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Song;
 class PlaylistController extends Controller
 {
-    public function add_song(Request $request, $playlistId)
-    {
-        $playlistId = $request->input('playlist_id');
-        
-        $playlist = Playlist::findOrFail($request->input('playlist_id'));
-        $song = Song::findOrFail($request->input('song_id'));
-
-        $playlist->songs()->attach($song);
-
-        return redirect('playlist/all');
-    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -110,12 +100,25 @@ class PlaylistController extends Controller
         return redirect(route('playlist.index'));
     
     }
+    // adds the specified Song from the relationship with the playlist
+    public function add_song(Request $request, $playlistId)
+    {
+        $playlistId = $request->input('playlist_id');
+        
+        $playlist = Playlist::findOrFail($request->input('playlist_id'));
+        $song = Song::findOrFail($request->input('song_id'));
+
+        $playlist->songs()->attach($song);
+
+        return redirect('playlist/all');
+    }
+    // removes the specified Song from the relationship with the playlist
     public function song_destroy(request $request,$playlistId,$songId ){
         $playlist_song = Playlist::findOrFail($playlistId);
     
         $playlist_song->songs()->detach($songId);
         
-        return redirect(route('playlist.show',['playlistId'=> $playlistId, 'playlistAllsong' => $playlist->songs]));
+        return redirect(route('playlist.show',$playlistId));
 
     }
     }

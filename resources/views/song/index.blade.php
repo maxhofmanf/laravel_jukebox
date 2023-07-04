@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    {{-- shows all songs in the database --}}
     <h1>Dit is een totaaloverzicht van alle Songs</h1>
 
     <ul>
@@ -26,7 +27,7 @@
         @foreach ($songs as $song)
             <li><a href="{{ route('song.show', ['id' => $song->id]) }}">{{ $song->name }}</a> - {{ $song->author }} |
                 Released in {{ $song->releasedate }}
-
+                {{-- delete song from database --}}
                 <a href="destroy/{{ $song->id }}">x</a>
             </li>
         @endforeach
