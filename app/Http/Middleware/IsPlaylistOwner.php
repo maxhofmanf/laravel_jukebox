@@ -24,7 +24,7 @@ class IsPlaylistOwner
         $playlistId = $request->playlist;
 
         $playlist = Playlist::find($playlistId);
-        
+        // dd($playlist);
         if($user->id == $playlist->user_id){
             return $next($request);
         } else{

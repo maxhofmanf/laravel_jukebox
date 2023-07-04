@@ -13,7 +13,7 @@ class SongController extends Controller
      */
     public function index()
     {
-
+        $query = Song::with('genre');
         $genres = Genre::all();
         $songs = Song::all();
         

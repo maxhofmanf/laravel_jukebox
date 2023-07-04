@@ -9,7 +9,7 @@
         <button type="submit">change Name</button>
 
     </form>
-    <form action="{{ route('playlist.addSong', $playlist->id) }}" method="POST">
+    <form action="{{ route('playlist.addSong', $playlistId) }}" method="POST">
         @csrf
 
         <input type="hidden" name="playlist_id" value="{{ $playlistId }}">

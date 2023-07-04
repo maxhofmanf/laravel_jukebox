@@ -16,8 +16,8 @@
         <?php $i = 0; ?>
         @foreach ($playlist->songs as $song)
             <?php $i++; ?>
-            <li>
-                {{ $i }}. {{ $song->name }}
+            <li value="{{ $song->id }}">
+                {{ $i }}. {{ $song->name }} <a href="{{ route('playlist.song_destroy', $playlistId) }}">x</a>
             </li>
         @endforeach
     </ul>
