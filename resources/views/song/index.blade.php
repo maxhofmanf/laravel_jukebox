@@ -11,7 +11,7 @@
 
             <select name="genre">
 
-                <option value="" {{ old('genre') == '' ? 'selected' : '' }}>all genres</option>
+                <option value="" {{ old('genre') }}>all genres</option>
 
                 @foreach ($genres as $genre)
                     <option value="{{ $genre->id }}" {{ old('genre') == $genre->id ? 'selected' : '' }}>
@@ -25,10 +25,7 @@
         </form>
         @foreach ($songs as $song)
             <li><a href="{{ route('song.show', ['id' => $song->id]) }}">{{ $song->name }}</a> - {{ $song->author }} |
-                Released in {{ $song->releasedate }} | is found in playlist:
-                @foreach ($song->playlists as $playlist)
-                    {{ $playlist->name }};
-                @endforeach
+                Released in {{ $song->releasedate }}
 
                 <a href="destroy/{{ $song->id }}">x</a>
             </li>

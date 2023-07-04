@@ -55,7 +55,7 @@ Route::middleware(IsPlaylistOwner::class)->group(function(){
     Route::get('/playlist/edit/{playlist}', [PlaylistController::class, 'edit'])->name('playlist.edit');
     Route::post('/playlist/update/{playlist}', [PlaylistController::class, 'update'])->name('playlist.update');
     Route::post('playlist/addsong/{playlist}',[PlaylistController::class,'add_song'])->name('playlist.addSong');
-    Route::get('playlist/song_destroy/{playlist_song_destroy}',[PlaylistController::class,'song_destroy'])->name('playlist.song_destroy');
+    Route::get('playlist/{playlist}/song_destroy/{song_id}',[PlaylistController::class,'song_destroy'])->name('playlist.song_destroy');
 });
 Route::get('/song/all', [SongController::class, 'index'])->name('song.index');
 Route::get('/song/create', [SongController::class, 'create'])->name('song.create');

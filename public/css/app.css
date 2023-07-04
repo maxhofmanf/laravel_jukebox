@@ -3,7 +3,36 @@
 @tailwind utilities;
 
 nav#nav ul {
-    /* display: ; */
+    display: inline;
     list-style: none;
     gap: 10px;
 }
+
+main,
+body {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+}
+
+#nav ul.horizontal-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+#nav ul.horizontal-menu li {
+    margin-right: 10px;
+}
+
+#nav ul.horizontal-menu .menu-separator {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+footer {
+    padding: 10px;
+    background-color: lightgray;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -110,8 +110,13 @@ class PlaylistController extends Controller
         return redirect(route('playlist.index'));
     
     }
-    public function song_destroy(request $request, $playlistId){
+    public function song_destroy(request $request,$playlistId,$songId ){
         $playlist_song = Playlist::findOrFail($playlistId);
     
+        $playlist_song->songs()->detach($songId);
+        
+        return redirect(route('playlist.show',['playlistId'=> $playlistId, 'playlistAllsong' => $playlist->songs]));
+
     }
-}
+    }
+

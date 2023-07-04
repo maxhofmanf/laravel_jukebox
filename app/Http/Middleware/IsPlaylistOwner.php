@@ -25,11 +25,12 @@ class IsPlaylistOwner
 
         $playlist = Playlist::find($playlistId);
         // dd($playlist);
-        if($user->id == $playlist->user_id){
-            return $next($request);
-        } else{
-        return redirect(route('playlist.index'));
-        }
+        
+            if($user->id == $playlist->user_id){
+                return $next($request);
+            } else{
+            return redirect(route('playlist.index'));
+            }
         
     }
 }
